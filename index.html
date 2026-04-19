@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -30,14 +31,10 @@
             // ==========================================
             // KONFIGURASI MEDIA (GANTI DI SINI)
             // ==========================================
-            const videoSource = "./video-lapangan.mp4"; // Ganti dengan link video Daniel
-            
-            const landscapePhotos = [
-                "./foto1.jpeg", // Foto Landscape 1
-                "./foto2.jpeg"  // Foto Landscape 2
-            ];
-
-            const iconicImage = "./foto1.jpeg"; // Foto Ikonik Kramat Dalam
+            const videoSource = "./video-lapangan.mp4"; 
+            const landscapePhotos = ["./foto1.jpeg", "./foto2.jpeg"];
+            const iconicImage = "./foto1.jpeg"; 
+            const profileImage = "./profil_danil.jpg"; // Nama file foto profil Daniel
             // ==========================================
 
             const nextSlide = () => setCurrentSlide((prev) => (prev === landscapePhotos.length - 1 ? 0 : prev + 1));
@@ -88,7 +85,7 @@
                             </div>
                             
                             <div className="order-1 lg:order-2 relative group">
-                                <div className="absolute -inset-4 bg-emerald-100 rounded-[3rem] rotate-2 opacity-50 group-hover:rotate-0 transition-transform duration-700"></div>
+                                <div className="absolute -inset-4 bg-emerald-100 rounded-[3rem] rotate-2 group-hover:rotate-0 transition-transform duration-700"></div>
                                 <div className="relative h-[350px] md:h-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
                                     <img src={iconicImage} className="w-full h-full object-cover" alt="Kramat Dalam" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -101,25 +98,25 @@
                         </div>
                     </header>
 
-                    {/* Media Showcase: Video & Slider */}
+                    {/* Media Showcase */}
                     <section id="media" className="py-24 bg-slate-900 text-white">
                         <div className="container mx-auto px-6">
                             <div className="max-w-2xl mx-auto text-center mb-16">
-                                <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">Fasilitas & Dokumentasi</h2>
-                                <p className="text-slate-400">Visualisasi sarana prasarana yang tersedia untuk warga gampong.</p>
+                                <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight uppercase italic">Visual Arena</h2>
+                                <p className="text-slate-400 tracking-wide">Dokumentasi sarana prasarana yang tersedia.</p>
                             </div>
 
                             <div className="grid lg:grid-cols-2 gap-10 items-start">
                                 {/* Video Area */}
                                 <div className="space-y-6">
                                     <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center">
-                                            <i data-lucide="video" className="text-emerald-400 w-5 h-5"></i>
+                                        <div className="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400">
+                                            <i data-lucide="video" className="w-5 h-5"></i>
                                         </div>
-                                        <h4 className="text-xl font-bold italic tracking-tight">Video Cinematic Lapangan</h4>
+                                        <h4 className="text-xl font-bold italic tracking-tight">Dokumentasi Video</h4>
                                     </div>
-                                    <div className="relative rounded-[2.5rem] overflow-hidden border-2 border-white/10 aspect-video shadow-2xl">
-                                        <video controls className="w-full h-full object-cover">
+                                    <div className="relative rounded-[2.5rem] overflow-hidden border-2 border-white/10 aspect-video shadow-2xl bg-black">
+                                        <video controls className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
                                             <source src={videoSource} type="video/mp4" />
                                         </video>
                                     </div>
@@ -129,10 +126,10 @@
                                 <div className="space-y-6">
                                     <div className="flex justify-between items-center">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center">
-                                                <i data-lucide="camera" className="text-emerald-400 w-5 h-5"></i>
+                                            <div className="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400">
+                                                <i data-lucide="camera" className="w-5 h-5"></i>
                                             </div>
-                                            <h4 className="text-xl font-bold italic tracking-tight">Galeri Foto Landscape</h4>
+                                            <h4 className="text-xl font-bold italic tracking-tight">Galeri Foto</h4>
                                         </div>
                                         <div className="flex gap-2">
                                             <button onClick={prevSlide} className="p-3 bg-white/5 hover:bg-emerald-600 rounded-xl transition-all border border-white/10 group">
@@ -143,51 +140,61 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div className="relative aspect-video rounded-[2.5rem] overflow-hidden border-2 border-white/10 shadow-2xl group">
+                                    <div className="relative aspect-video rounded-[2.5rem] overflow-hidden border-2 border-white/10 shadow-2xl group bg-slate-800">
                                         {landscapePhotos.map((img, idx) => (
                                             <img 
                                                 key={idx} 
                                                 src={img} 
                                                 className={`absolute inset-0 w-full h-full object-cover slider-transition ${idx === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} 
+                                                onError={(e) => e.target.src = "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200"}
                                             />
                                         ))}
-                                        <div className="absolute bottom-6 right-8 flex gap-1.5">
-                                            {landscapePhotos.map((_, i) => (
-                                                <div key={i} className={`h-1 rounded-full transition-all duration-500 ${i === currentSlide ? 'w-8 bg-emerald-500' : 'w-2 bg-white/30'}`}></div>
-                                            ))}
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    {/* Facility Info Card */}
+                    {/* Facility Info */}
                     <section className="py-24 bg-white">
                         <div className="container mx-auto px-6 grid md:grid-cols-3 gap-8">
                             {[
-                                { icon: "shield-check", title: "Keamanan Utama", desc: "Berlokasi di pemukiman warga yang aman dan diawasi oleh gampong." },
-                                { icon: "users", title: "Fasilitas Publik", desc: "Milik masyarakat Gampong Kramat Dalam dan terbuka untuk umum." },
-                                { icon: "star", title: "Terawat Baik", desc: "Pemeliharaan rutin dilakukan demi kenyamanan dan kesehatan atlet muda." }
+                                { icon: "shield-check", title: "Keamanan Utama", desc: "Berlokasi di pemukiman warga yang aman dan kondusif." },
+                                { icon: "users", title: "Fasilitas Publik", desc: "Milik masyarakat Gampong dan terbuka untuk umum." },
+                                { icon: "star", title: "Terawat Baik", desc: "Pemeliharaan rutin dilakukan demi kenyamanan bermain." }
                             ].map((item, idx) => (
                                 <div key={idx} className="p-10 bg-slate-50 rounded-[3rem] border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-emerald-100 transition-all duration-500 group">
                                     <div className="w-14 h-14 bg-emerald-600 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-emerald-100 group-hover:scale-110 transition-transform">
                                         <i data-lucide={item.icon}></i>
                                     </div>
-                                    <h4 className="text-2xl font-black mb-4 text-slate-800 tracking-tight">{item.title}</h4>
+                                    <h4 className="text-2xl font-black mb-4 text-slate-800 tracking-tight uppercase italic">{item.title}</h4>
                                     <p className="text-slate-500 leading-relaxed italic">"{item.desc}"</p>
                                 </div>
                             ))}
                         </div>
                     </section>
 
-                    {/* Developer Profile Footer */}
+                    {/* Developer Profile Footer (Dengan Foto Profil) */}
                     <footer className="bg-slate-50 border-t border-slate-200 py-24 mt-auto">
                         <div className="container mx-auto px-6 text-center">
-                            <div className="inline-flex flex-col items-center bg-white p-12 rounded-[3.5rem] border border-slate-200 shadow-sm relative">
+                            <div className="inline-flex flex-col items-center bg-white p-10 md:p-14 rounded-[3.5rem] border border-slate-200 shadow-sm relative">
                                 <div className="absolute -top-6 bg-emerald-600 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl shadow-emerald-200">
                                     Author & Developer
                                 </div>
+                                
+                                {/* Foto Profil Daniel 1x1 */}
+                                <div className="w-32 h-32 mb-8 relative group">
+                                    <div className="absolute -inset-2 bg-emerald-500/20 rounded-[2.5rem] rotate-6 group-hover:rotate-0 transition-transform duration-500"></div>
+                                    <div className="relative w-full h-full bg-slate-100 rounded-[2.2rem] overflow-hidden border-4 border-white shadow-lg">
+                                        <img 
+                                            src={profileImage} 
+                                            className="w-full h-full object-cover" 
+                                            alt="Profil Daniel Fendisa"
+                                            onError={(e) => e.target.src = "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=400"} 
+                                        />
+                                    </div>
+                                </div>
+
                                 <h5 className="text-3xl font-black text-slate-900 mb-1 tracking-tight">Mohd Daniel Fendisa</h5>
                                 <p className="text-emerald-600 font-extrabold mb-6 tracking-[0.2em] uppercase text-xs">NPM: 23105111054</p>
                                 <div className="h-1 w-16 bg-slate-100 rounded-full mb-8"></div>
@@ -207,3 +214,5 @@
     </script>
 </body>
 </html>
+
+```
